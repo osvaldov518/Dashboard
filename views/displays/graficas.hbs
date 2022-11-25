@@ -1,0 +1,163 @@
+<style type="text/css">
+    .contenedorGrafica{
+        border-style: groove;
+        vertical-align: center;
+        text-align: center;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<br>
+<center>
+    <h1>Dashboard Principal</h1>
+</center>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 contenedorGrafica">
+            <center>
+                <i class="fas fa-running fa-2x"></i>
+                <i class="fas">Cantidad de Pasos Recorridos</i>
+                <h3>
+                    {{#if datos}}
+                        {{#each datos}}
+                            {{this.pasos_recorridos}} Pasos
+                        {{/each}}
+                    {{/if}}
+                </h3>
+            </center>
+        </div>
+        <div class="col-md-4 contenedorGrafica">
+            <center>
+                <i class="fas fa-shoe-prints fa-2x"></i>
+                <i class="fas">Inclinacion del Pie</i>
+                <h3>
+                    {{#if datos}}
+                        {{#each datos}}
+                            {{this.inclinacion}}
+                        {{/each}}
+                    {{/if}}
+                </h3>
+            </center>
+        </div>
+        <div class="col-md-4 contenedorGrafica">
+            <center>
+                <i class="fas fa-chart-line fa-2x"></i>
+                <i class="fas">Promedio de pasos semanal</i>
+                <h3>
+                    {{#if datos}}
+                        {{#each datos}}
+                            {{this.prom_semanal}} Pasos
+                        {{/each}}
+                    {{/if}}
+                </h3>
+            </center>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6 contenedorGrafica">
+            <i class="fas fa-map-marked fa-2x"></i>
+            <i class="fas">Ubicacion</i>
+            <br>
+            <img src="https://i.ibb.co/cCNF2y4/sanroque.png" width="45%">
+        </div>
+        <div class="col-md-6 contenedorGrafica">
+            <center>
+                <i class="fas">Meta alcanzada</i>
+                <div class="chart-container contenedorGrafica" style="width:40%">
+                    <canvas id="myChart2"></canvas>
+                    <script>
+                        const ctx2 = document.getElementById('myChart2').getContext('2d');
+                        const myChart2 = new Chart(ctx2, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Pasos', 'Meta'],
+                                datasets: [{
+                                    label: '# of Votes',
+                                    data: [1, 99],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 contenedorGrafica">
+            <div class="chart-container">
+                <i class="fas">Pasos semanales</i>
+                <canvas id="myChart3" style="height:10vh; width:20vw"></canvas>
+                {{#if datos}}
+                    {{#each datos}}
+                <script>
+                    const ctx3 = document.getElementById('myChart3').getContext('2d');
+                    const myChart3 = new Chart(ctx3, {
+                        type: 'line',
+                        data: {
+                            labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+                            datasets: [{
+                                label: 'Pasos',
+                                data: [{{this.pasos_lunes}}, {{this.pasos_martes}}, {{this.pasos_miercoles}}, {{this.pasos_jueves}}, {{this.pasos_viernes}}, {{this.pasos_sabado}}, {{this.pasos_domingo}}],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                },
+                                x: {
+
+                                }
+                            }
+                        }
+                    });
+                </script> 
+                    {{/each}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
