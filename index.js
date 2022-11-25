@@ -8,8 +8,6 @@ const graficasRoutes = require('./routes/graficas')
 const monitorbdRoutes = require('./routes/monitorbd')
 
 const app = express();
-// app.set('port', 8888);
-app.set('port', process.env.PORT || 8888);
 
 app.set('views', __dirname + '/views');
 app.engine('.hbs', engine({
@@ -18,14 +16,7 @@ app.engine('.hbs', engine({
 
 app.set('view engine', 'hbs');
 
-// app.use(myconnection(mysql, {
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     port: 3306,
-//     database: 'dbdashboard'
-// }));
-
+app.set('port', process.env.PORT || 8888);
 app.listen(app.get('port'), () => {
     console.log('Servidor corriendo en puerto ', app.get('port'));
 });
