@@ -1,3 +1,4 @@
+process.env.TZ = 'America/Bogota';
 const express = require("express");
 const { engine } = require("express-handlebars");
 // const myconnection = require("express-myconnection");
@@ -7,7 +8,8 @@ const graficasRoutes = require('./routes/graficas')
 const monitorbdRoutes = require('./routes/monitorbd')
 
 const app = express();
-app.set('port', 8888);
+// app.set('port', 8888);
+app.set('port', process.env.PORT || 8888);
 
 app.set('views', __dirname + '/views');
 app.engine('.hbs', engine({
