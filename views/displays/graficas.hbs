@@ -5,6 +5,15 @@
         text-align: center;
     }
 </style>
+<style>
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80%;
+      border-style: solid;
+    }
+  </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <br>
 <center>
@@ -60,7 +69,13 @@
             <i class="fas fa-map-marked fa-2x"></i>
             <i class="fas">Ubicacion</i>
             <br>
-            <img src="https://i.ibb.co/cCNF2y4/sanroque.png" width="45%">
+            <!-- aqui va el mapa interactivo -->
+            <div class="col-md-12" style="text-align: center; vertical-align: center;">
+                <center>
+                    <div id='map' style="width: 95%; height: 18em;"></div>
+                </center>
+            </div>
+            <!-- aqui va el mapa interactivo -->
         </div>
         <div class="col-md-6 contenedorGrafica">
             <center>
@@ -161,3 +176,39 @@
         </div>
     </div>
 </div>
+{{#if datos}}
+    {{#each datos}}
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoib3N2YWxkb3Y1MTgiLCJhIjoiY2t6dTU0M3hqMWsyODJ1cnh6dHN4M2UyZCJ9.hQjzLpmnWQO7oLJH0ewZIA';
+  const map = new mapboxgl.Map({
+    container: 'map', // Container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // Map style to use
+    center: [-74, 4], // Starting position [lng, lat]
+    zoom: 4, // Starting zoom level
+  });
+
+  map.on('idle',function(){
+  map.resize()
+  map.flyTo({
+      center: [{{this.longitud}}, {{this.latitud}}],
+      speed: 2,
+      zoom: 16
+  })
+  })
+
+  const marker = new mapboxgl.Marker() // initialize a new marker
+    .setLngLat([{{this.longitud}}, {{this.latitud}}]) // Marker [lng, lat] coordinates
+    .addTo(map); // Add the marker to the map
+
+</script>
+
+    {{/each}}
+{{/if}}
+
+
+
+
+
+
+
