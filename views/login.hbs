@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var x = document.getElementById("menuizquierda");
+        x.style.display = "none";
+    </script>
+</head>
+<body>
+    <hr>
+    <div class="col-md-4"></div>
+    <center>
+    <div class="col-md-4">
+        <form action="/login" method="POST">
+            <div class="form-outline mb-4">
+            <center><h1>Iniciar Sesión</h1></center>
+            </div>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" name="username" id="form2Example1" class="form-control" />
+                <label class="form-label" for="form2Example1">Usuario</label>
+            </div>
+        
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" name="password" id="form2Example2" class="form-control" />
+                <label class="form-label" for="form2Example2">Contraseña</label>
+            </div>
+        
+            <!-- Submit button -->
+            <input type="submit" class="btn btn-primary btn-block mb-4" value="Iniciar Sesión">
+        </form>
+    </div>
+    </center>
+    <div class="col-md-4"></div>
+</body>
+</html>

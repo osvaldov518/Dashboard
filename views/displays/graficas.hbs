@@ -90,7 +90,10 @@
                                 labels: ['Pasos', 'Meta'],
                                 datasets: [{
                                     label: '# of Votes',
-                                    data: [1, 99],
+                                    data: [
+                                        {{this.pasos_recorridos}},
+                                        99
+                                    ],
                                     backgroundColor: [
                                         'rgba(255, 99, 132, 0.2)',
                                         'rgba(54, 162, 235, 0.2)',
@@ -193,7 +196,7 @@
   map.flyTo({
       center: [{{this.longitud}}, {{this.latitud}}],
       speed: 2,
-      zoom: 16
+      zoom: 16 
   })
   })
 
